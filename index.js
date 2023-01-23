@@ -186,3 +186,5 @@ function closingButtons() {
     });
   }
 }
+
+closingButtons();
