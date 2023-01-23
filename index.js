@@ -31,6 +31,7 @@ function recalculate() {
       : parseInt(quizzesgrades[i].value);
   }
   let qpercent = (quizzestotal / ((quizzesgrades.length - 1) * 100)) * 100;
+  isNaN(qpercent) ? (qpercent = 0) : qpercent;
 
   // assignments
   let assignmentsweight = assignments.querySelector("input").value;
@@ -43,6 +44,7 @@ function recalculate() {
   }
   let apercent =
     (assignmentstotal / ((assignmentsgrades.length - 1) * 100)) * 100;
+  isNaN(apercent) ? (apercent = 0) : apercent;
 
   // webass
   let webassweight = webass.querySelector("input").value;
@@ -54,6 +56,7 @@ function recalculate() {
       : parseInt(webassgrades[i].value);
   }
   let wpercent = (webasstotal / ((webassgrades.length - 1) * 100)) * 100;
+  isNaN(wpercent) ? (wpercent = 0) : wpercent;
 
   // midterms
   let midtermsweight = midterms.querySelector("input").value;
@@ -65,6 +68,7 @@ function recalculate() {
       : parseInt(midtermsgrades[i].value);
   }
   let mpercent = (midtermstotal / ((midtermsgrades.length - 1) * 100)) * 100;
+  isNaN(mpercent) ? (mpercent = 0) : mpercent;
 
   // finals
   let finalsweight = finals.querySelector("input").value;
@@ -76,6 +80,7 @@ function recalculate() {
       : parseInt(finalsgrades[i].value);
   }
   let fpercent = (finalstotal / ((finalsgrades.length - 1) * 100)) * 100;
+  isNaN(fpercent) ? (fpercent = 0) : fpercent;
 
   // total
   let tpercent =
