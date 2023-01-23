@@ -24,42 +24,27 @@ function recalculate() {
   let quizzesgrades = quizzes.querySelectorAll("input");
   let total = 0;
   for (let i = 1; i < quizzesgrades.length; i++) {
-    quizzesgrades[i].value < 0
-      ? (quizzesgrades[i].value = 0)
-      : quizzesgrades[i].value;
-    quizzesgrades[i].value > 100
-      ? (quizzesgrades[i].value = 100)
-      : quizzesgrades[i].value;
     total += isNaN(parseInt(quizzesgrades[i].value))
       ? 0
       : parseInt(quizzesgrades[i].value);
   }
-  grade.innerText =
-    ((total / ((quizzesgrades.length - 1) * 100)) * 100).toFixed(2) + "%";
-
-  letter.innerText =
-    letters[
-      Math.floor(
-        ((total / ((quizzesgrades.length - 1) * 100)) * 100).toFixed(2) / 10
-      )
-    ];
-  console.log(totaltext.style.color);
-
-  totaltext.style.color =
-    colors[
-      Math.floor(
-        ((total / ((quizzesgrades.length - 1) * 100)) * 100).toFixed(2) / 10
-      )
-    ];
-
-  console.log(totaltext.style.color);
+  let qpercent = (total / ((quizzesgrades.length - 1) * 100)) * 100;
+  let tpercent = qpercent * (quizzesweight / 100).toFixed(2);
+  totaltext.style.color = colors[Math.floor(tpercent / 10)];
+  letter.innerText = letters[Math.floor(tpercent / 10)];
+  grade.innerText = tpercent + "%";
 }
 
 function bindInputs() {
   let quizzesgrades = quizzes.querySelectorAll("input");
   for (let i = 0; i < quizzesgrades.length; i++) {
     quizzesgrades[i].onchange = function () {
-      console.warn(quizzesgrades[i].value);
+      quizzesgrades[i].value < 0
+        ? (quizzesgrades[i].value = 0)
+        : quizzesgrades[i].value;
+      quizzesgrades[i].value > 100
+        ? (quizzesgrades[i].value = 100)
+        : quizzesgrades[i].value;
       recalculate();
     };
   }
