@@ -262,7 +262,7 @@ window.onload = function () {
       let grade = localStorage.getItem("quizzesgrade" + i);
       addbtn[0].insertAdjacentHTML(
         "beforebegin",
-        `<div class="week" style="position: relative"><input type="number" id="input" placeholder="Week ${quizzeslength}" value="${grade}"/><button class="x button buttont" style="position: absolute; top: -.25rem; right: -.25rem;"><b>+</b></button></div>`
+        `<div class="week" style="position: relative"><input type="number" id="input" placeholder="Week ${i}" value="${grade}"/><button class="x button buttont" style="position: absolute; top: -.25rem; right: -.25rem;"><b>+</b></button></div>`
       );
       closingButtons();
       recalculate();
@@ -283,7 +283,7 @@ window.onload = function () {
       let grade = localStorage.getItem("assignmentsgrade" + i);
       addbtn[0].insertAdjacentHTML(
         "beforebegin",
-        `<div class="week" style="position: relative"><input type="number" id="input" placeholder="Week ${assignmentslength}" value="${grade}"/><button class="x button buttont" style="position: absolute; top: -.25rem; right: -.25rem;"><b>+</b></button></div>`
+        `<div class="week" style="position: relative"><input type="number" id="input" placeholder="Week ${i}" value="${grade}"/><button class="x button buttont" style="position: absolute; top: -.25rem; right: -.25rem;"><b>+</b></button></div>`
       );
       closingButtons();
       recalculate();
@@ -303,7 +303,7 @@ window.onload = function () {
       let grade = localStorage.getItem("webassgrade" + i);
       addbtn[0].insertAdjacentHTML(
         "beforebegin",
-        `<div class="week" style="position: relative"><input type="number" id="input" placeholder="Week ${webasslength}" value="${grade}"/><button class="x button buttont" style="position: absolute; top: -.25rem; right: -.25rem;"><b>+</b></button></div>`
+        `<div class="week" style="position: relative"><input type="number" id="input" placeholder="Week ${i}" value="${grade}"/><button class="x button buttont" style="position: absolute; top: -.25rem; right: -.25rem;"><b>+</b></button></div>`
       );
       closingButtons();
       recalculate();
@@ -322,7 +322,7 @@ window.onload = function () {
       let grade = localStorage.getItem("midtermsgrade" + i);
       addbtn[0].insertAdjacentHTML(
         "beforebegin",
-        `<div class="week" style="position: relative"><input type="number" id="input" placeholder="Week ${midtermslength}" value="${grade}"/><button class="x button buttont" style="position: absolute; top: -.25rem; right: -.25rem;"><b>+</b></button></div>`
+        `<div class="week" style="position: relative"><input type="number" id="input" placeholder="Week ${i}" value="${grade}"/><button class="x button buttont" style="position: absolute; top: -.25rem; right: -.25rem;"><b>+</b></button></div>`
       );
       closingButtons();
       recalculate();
@@ -341,7 +341,7 @@ window.onload = function () {
       let grade = localStorage.getItem("finalsgrade" + i);
       addbtn[0].insertAdjacentHTML(
         "beforebegin",
-        `<div class="week" style="position: relative"><input type="number" id="input" placeholder="Week ${finalslength}" value="${grade}"/><button class="x button buttont" style="position: absolute; top: -.25rem; right: -.25rem;"><b>+</b></button></div>`
+        `<div class="week" style="position: relative"><input type="number" id="input" placeholder="Week ${i}" value="${grade}"/><button class="x button buttont" style="position: absolute; top: -.25rem; right: -.25rem;"><b>+</b></button></div>`
       );
       closingButtons();
       recalculate();
