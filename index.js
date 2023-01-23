@@ -1,5 +1,21 @@
+let totaltext = document.getElementById("totaltext");
 let quizzes = document.getElementById("quizzes");
+let letter = document.getElementById("letter");
 let grade = document.getElementById("grade");
+const letters = ["E", "E", "E", "E", "E", "E", "D", "C", "B", "A", "A++"];
+const colors = [
+  "#ff6666",
+  "#ff6666",
+  "#ff6666",
+  "#ff6666",
+  "#ff6666",
+  "#ff6666",
+  "#ff8666",
+  "#face78",
+  "#7dd6b0",
+  "#aed073",
+  "#aed073",
+];
 function recalculate() {
   // get value of first input
   let quizzesweight = quizzes.querySelector("input").value;
@@ -20,6 +36,23 @@ function recalculate() {
   }
   grade.innerText =
     ((total / ((quizzesgrades.length - 1) * 100)) * 100).toFixed(2) + "%";
+
+  letter.innerText =
+    letters[
+      Math.floor(
+        ((total / ((quizzesgrades.length - 1) * 100)) * 100).toFixed(2) / 10
+      )
+    ];
+  console.log(totaltext.style.color);
+
+  totaltext.style.color =
+    colors[
+      Math.floor(
+        ((total / ((quizzesgrades.length - 1) * 100)) * 100).toFixed(2) / 10
+      )
+    ];
+
+  console.log(totaltext.style.color);
 }
 
 function bindInputs() {
