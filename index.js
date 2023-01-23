@@ -165,7 +165,6 @@ function bindInputs() {
     };
   }
 }
-bindInputs();
 
 let addbuttons = document.querySelectorAll("button.add.button.buttont");
 for (let i = 0; i < addbuttons.length; i++) {
@@ -192,4 +191,161 @@ function closingButtons() {
   }
 }
 
-closingButtons();
+// Save input values to LocalStorage when user leaves the page
+window.onbeforeunload = function () {
+  localStorage.setItem("quizzesweight", quizzes.querySelector("input").value);
+  localStorage.setItem(
+    "assignmentsweight",
+    assignments.querySelector("input").value
+  );
+  localStorage.setItem("webassweight", webass.querySelector("input").value);
+  localStorage.setItem("midtermsweight", midterms.querySelector("input").value);
+  localStorage.setItem("finalsweight", finals.querySelector("input").value);
+
+  let quizzesgrades = quizzes.querySelectorAll("input");
+  for (let i = 1; i < quizzesgrades.length; i++) {
+    localStorage.setItem("quizzesgrade" + i, quizzesgrades[i].value);
+  }
+
+  let assignmentsgrades = assignments.querySelectorAll("input");
+  for (let i = 1; i < assignmentsgrades.length; i++) {
+    localStorage.setItem("assignmentsgrade" + i, assignmentsgrades[i].value);
+  }
+
+  let webassgrades = webass.querySelectorAll("input");
+  for (let i = 1; i < webassgrades.length; i++) {
+    localStorage.setItem("webassgrade" + i, webassgrades[i].value);
+  }
+
+  let midtermsgrades = midterms.querySelectorAll("input");
+  for (let i = 1; i < midtermsgrades.length; i++) {
+    localStorage.setItem("midtermsgrade" + i, midtermsgrades[i].value);
+  }
+
+  let finalsgrades = finals.querySelectorAll("input");
+  for (let i = 1; i < finalsgrades.length; i++) {
+    localStorage.setItem("finalsgrade" + i, finalsgrades[i].value);
+  }
+
+  // Save the number of input fields for each category in LocalStorage
+  localStorage.setItem("quizzeslength", quizzesgrades.length);
+  localStorage.setItem("assignmentslength", assignmentsgrades.length);
+  localStorage.setItem("webasslength", webassgrades.length);
+  localStorage.setItem("midtermslength", midtermsgrades.length);
+  localStorage.setItem("finalslength", finalsgrades.length);
+};
+
+// Restore input values from LocalStorage on first load
+window.onload = function () {
+  quizzes.querySelector("input").value =
+    localStorage.getItem("quizzesweight") || "";
+  assignments.querySelector("input").value =
+    localStorage.getItem("assignmentsweight") || "";
+  webass.querySelector("input").value =
+    localStorage.getItem("webassweight") || "";
+  midterms.querySelector("input").value =
+    localStorage.getItem("midtermsweight") || "";
+  finals.querySelector("input").value =
+    localStorage.getItem("finalsweight") || "";
+
+  let quizzesgrades = quizzes.querySelectorAll("input");
+  for (let i = 1; i < quizzesgrades.length; i++) {
+    quizzesgrades[i].value = localStorage.getItem("quizzesgrade" + i) || "";
+  }
+
+  // Check if the number of input fields in LocalStorage is different from the current number
+  let quizzeslength = localStorage.getItem("quizzeslength") || 0;
+  if (quizzesgrades.length < quizzeslength) {
+    // If there are less input fields on the page than in LocalStorage, create the missing input fields
+    for (let i = quizzesgrades.length; i < quizzeslength; i++) {
+      let addbtn = quizzes.querySelectorAll("button.add.button.buttont");
+      let grade = localStorage.getItem("quizzesgrade" + i);
+      addbtn[0].insertAdjacentHTML(
+        "beforebegin",
+        `<div class="week" style="position: relative"><input type="number" id="input" placeholder="Week ${quizzeslength}" value="${grade}"/><button class="x button buttont" style="position: absolute; top: -.25rem; right: -.25rem;"><b>+</b></button></div>`
+      );
+      closingButtons();
+      recalculate();
+      bindInputs();
+    }
+  }
+
+  let assignmentsgrades = assignments.querySelectorAll("input");
+  for (let i = 1; i < assignmentsgrades.length; i++) {
+    assignmentsgrades[i].value =
+      localStorage.getItem("assignmentsgrade" + i) || "";
+  }
+  // Same check as above for assignments
+  let assignmentslength = localStorage.getItem("assignmentslength") || 0;
+  if (assignmentsgrades.length < assignmentslength) {
+    for (let i = assignmentsgrades.length; i < assignmentslength; i++) {
+      let addbtn = assignments.querySelectorAll("button.add.button.buttont");
+      let grade = localStorage.getItem("assignmentsgrade" + i);
+      addbtn[0].insertAdjacentHTML(
+        "beforebegin",
+        `<div class="week" style="position: relative"><input type="number" id="input" placeholder="Week ${assignmentslength}" value="${grade}"/><button class="x button buttont" style="position: absolute; top: -.25rem; right: -.25rem;"><b>+</b></button></div>`
+      );
+      closingButtons();
+      recalculate();
+      bindInputs();
+    }
+  }
+
+  // Repeat the same checks for web assignments, midterms and finals
+  let webassgrades = webass.querySelectorAll("input");
+  for (let i = 1; i < webassgrades.length; i++) {
+    webassgrades[i].value = localStorage.getItem("webassgrade" + i) || "";
+  }
+  let webasslength = localStorage.getItem("webasslength") || 0;
+  if (webassgrades.length < webasslength) {
+    for (let i = webassgrades.length; i < webasslength; i++) {
+      let addbtn = webass.querySelectorAll("button.add.button.buttont");
+      let grade = localStorage.getItem("webassgrade" + i);
+      addbtn[0].insertAdjacentHTML(
+        "beforebegin",
+        `<div class="week" style="position: relative"><input type="number" id="input" placeholder="Week ${webasslength}" value="${grade}"/><button class="x button buttont" style="position: absolute; top: -.25rem; right: -.25rem;"><b>+</b></button></div>`
+      );
+      closingButtons();
+      recalculate();
+      bindInputs();
+    }
+  }
+
+  let midtermsgrades = midterms.querySelectorAll("input");
+  for (let i = 1; i < midtermsgrades.length; i++) {
+    midtermsgrades[i].value = localStorage.getItem("midtermsgrade" + i) || "";
+  }
+  let midtermslength = localStorage.getItem("midtermslength") || 0;
+  if (midtermsgrades.length < midtermslength) {
+    for (let i = midtermsgrades.length; i < midtermslength; i++) {
+      let addbtn = midterms.querySelectorAll("button.add.button.buttont");
+      let grade = localStorage.getItem("midtermsgrade" + i);
+      addbtn[0].insertAdjacentHTML(
+        "beforebegin",
+        `<div class="week" style="position: relative"><input type="number" id="input" placeholder="Week ${midtermslength}" value="${grade}"/><button class="x button buttont" style="position: absolute; top: -.25rem; right: -.25rem;"><b>+</b></button></div>`
+      );
+      closingButtons();
+      recalculate();
+      bindInputs();
+    }
+  }
+
+  let finalsgrades = finals.querySelectorAll("input");
+  for (let i = 1; i < finalsgrades.length; i++) {
+    finalsgrades[i].value = localStorage.getItem("finalsgrade" + i) || "";
+  }
+  let finalslength = localStorage.getItem("finalslength") || 0;
+  if (finalsgrades.length < finalslength) {
+    for (let i = finalsgrades.length; i < finalslength; i++) {
+      let addbtn = finals.querySelectorAll("button.add.button.buttont");
+      let grade = localStorage.getItem("finalsgrade" + i);
+      addbtn[0].insertAdjacentHTML(
+        "beforebegin",
+        `<div class="week" style="position: relative"><input type="number" id="input" placeholder="Week ${finalslength}" value="${grade}"/><button class="x button buttont" style="position: absolute; top: -.25rem; right: -.25rem;"><b>+</b></button></div>`
+      );
+      closingButtons();
+      recalculate();
+      bindInputs();
+    }
+  }
+};
