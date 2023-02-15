@@ -349,3 +349,59 @@ window.onload = function () {
     }
   }
 };
+
+// Get the color buttons and the root element
+const orangeBtn = document.getElementById("orange-btn");
+const limeBtn = document.getElementById("lime-btn");
+const greenBtn = document.getElementById("green-btn");
+const tealBtn = document.getElementById("teal-btn");
+const redBtn = document.getElementById("red-btn");
+const pinkBtn = document.getElementById("pink-btn");
+const puprpleBtn = document.getElementById("purple-btn");
+const blueBtn = document.getElementById("blue-btn");
+const root = document.documentElement;
+
+// Get the user's preferred color from local storage, or use green as the default
+const preferredColor = localStorage.getItem("colorPreference") || "green";
+setColor(preferredColor);
+
+// Attach click event listeners to the color buttons
+orangeBtn.addEventListener("click", () => setColor("orange"));
+limeBtn.addEventListener("click", () => setColor("lime"));
+greenBtn.addEventListener("click", () => setColor("green"));
+tealBtn.addEventListener("click", () => setColor("teal"));
+redBtn.addEventListener("click", () => setColor("red"));
+pinkBtn.addEventListener("click", () => setColor("pink"));
+puprpleBtn.addEventListener("click", () => setColor("purple"));
+blueBtn.addEventListener("click", () => setColor("blue"));
+
+// Set the color of the root element and store the user's preference in local storage
+function setColor(color) {
+  switch (color) {
+    case "orange":
+      root.style.setProperty("--color", 25);
+      break;
+    case "lime":
+      root.style.setProperty("--color", 69);
+      break;
+    case "green":
+      root.style.setProperty("--color", 100);
+      break;
+    case "teal":
+      root.style.setProperty("--color", 150);
+      break;
+    case "red":
+      root.style.setProperty("--color", 0);
+      break;
+    case "pink":
+      root.style.setProperty("--color", 333);
+      break;
+    case "purple":
+      root.style.setProperty("--color", 270);
+      break;
+    default: // blue
+      root.style.setProperty("--color", 240);
+      break;
+  }
+  localStorage.setItem("colorPreference", color);
+}
