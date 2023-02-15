@@ -160,6 +160,29 @@ input[type="number"]::-webkit-outer-spin-button {
   transform: scale(5) translate(-0.5rem, -1.5rem);
   transition: scale 0.5s ease, translate 0.5s ease, transform 5s 1s ease-in-out;
 }
+
+/* on mobile */
+@media (max-width: 600px) {
+  .shrimp,
+  .shrimp1,
+  .shrimp2,
+  .shrimp3,
+  .shrimp4 {
+    display: none;
+  }
+}
+/* on desktop */
+@media (min-width: 600px) {
+  .logo {
+    display: none;
+  }
+}
+
+.logo {
+  rotate: -30deg;
+  margin-right: 0.75rem;
+}
+
 .shrimp,
 .shrimp1,
 .shrimp2,
